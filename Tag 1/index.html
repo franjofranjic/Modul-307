@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
      <!--Import Google Icon Font-->
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
      <!--Import materialize.css-->
@@ -13,6 +14,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
      <title>Aufgabe 1</title>
      <link rel="stylesheet" href="css/style.css">
+     <script src="js/script.js"></script>
 </head>
 <body>
   <nav>
@@ -40,8 +42,17 @@
     </thead>
 
     <tbody>
-      <a class="btn-floating btn-large waves-effect waves-light teal plusbtn"><i class="material-icons">add</i></a>
-        
+      <a class="btn-floating btn-large waves-effect waves-light teal plusbtn" id="addBtn"><i class="material-icons">add</i></a>
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4 id="modaltitle">Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
       <tr>
         <td>1</td>
         <td>Passat</td>
@@ -52,14 +63,14 @@
         </td>
         <td>Limousine</td>
         <td>0</td>
-        <td>
-          <i class="material-icons blue-text">directions_car</i>
-          <i class="material-icons green-text">create</i>
-          <i class="material-icons red-text">delete_forever</i>
+        <td data-id="1">
+          <i class="material-icons blue-text tankenBtn">directions_car</i>
+          <i class="material-icons green-text editBtn">create</i>
+          <i class="material-icons red-text removeBtn">delete_forever</i>
         </td>
       </tr>
       <tr>
-        <td>1</td>
+        <td>2</td>
         <td>Passat</td>
         <td>Benzin</td>
         <td>
@@ -68,14 +79,14 @@
         </td>
         <td> SUV</td>
         <td>0</td>
-        <td>
-          <i class="material-icons blue-text">directions_car</i>
-          <i class="material-icons green-text">create</i>
-          <i class="material-icons red-text">delete_forever</i>
+        <td data-id="2">
+          <i class="material-icons blue-text tankenBtn">directions_car</i>
+          <i class="material-icons green-text editBtn">create</i>
+          <i class="material-icons red-text removeBtn">delete_forever</i>
         </td>
       </tr>
       <tr>
-        <td>1</td>
+        <td>3</td>
         <td>Passat</td>
         <td>Elektro</td>
         <td>
@@ -84,10 +95,10 @@
         </td>
         <td>Pickup</td>
         <td>0</td>
-        <td>
-          <i class="material-icons blue-text">directions_car</i>
-          <i class="material-icons green-text">create</i>
-          <i class="material-icons red-text">delete_forever</i>
+        <td data-id="3">
+          <i class="material-icons blue-text tankenBtn">directions_car</i>
+          <i class="material-icons green-text editBtn">create</i>
+          <i class="material-icons red-text removeBtn">delete_forever</i>
         </td>
       </tr>
     </tbody>
