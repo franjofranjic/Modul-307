@@ -29,16 +29,18 @@ $(document).ready(function() {
         console.log('add Vehicle');
         var mymodal = M.Modal.getInstance($('.modal'));
         mymodal.open();
+        var id = $(this).parent().attr('data-id');
         $('#modaltitle').html('Auto hinzufügen');
+        $('#modalinhalt').load('sites/formular.html')
     });
     
     $('.editBtn').click(function() {
         console.log('edit');
         var mymodal = M.Modal.getInstance($('.modal'));
         mymodal.open();
-        $('#modaltitle').html('Auto bearbeiten');
         var id = $(this).parent().attr('data-id');
-        console.log('tanken von: ' + id);
+        $('#modaltitle').html('Auto bearbeiten: ' + id);
+        $('#modalinhalt').load('sites/formular.html')
     });
     
     $('.tankenBtn').click(function() {
