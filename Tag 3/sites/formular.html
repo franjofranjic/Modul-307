@@ -1,33 +1,40 @@
 <div class="row">
-  <div class="input-field col s6">
-    <input placeholder="name *" id="name" type="text" class="validate">
+  <div class="input-field col 16 s12 m6">
+    <input id="name" type="text" class="validate" required>
+    <label for="name">name *</label>
   </div>
 
-  <div class="input-field col s6">
-    <input placeholder="kraftstoff" id="kraftstoff" type="text" class="validate">
+  <div class="input-field col 16 s12 m6">
+    <input id="kraftstoff" type="text" class="validate">
+    <label for="kraftstoff">kraftstoff</label>
   </div>
 </div>
 
 <div class="row">
-  <div class="input-field col s6">
-    <input type="color" id="favcolor" name="favcolor" value="#ff0000"><br><br>
-    <label for="favcolor">Farbe:</label>
+  <div class="input-field col 16 s12 m6">
+    farbe :
+    <input type="color" id="favcolor" name="favcolor" value="#ff0000">
   </div>
 
-  <div class="input-field col s6">
-
-    <select id="select1">
+  <div class="input-field col 16 s12 m6">
+    <select name="bauart" id="bauart">
       <option value="" disabled selected>Choose your option</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-  </select>
+      <option value="Limousine">Limousine</option>
+      <option value="Kombi">Kombi</option>
+      <option value="Pickup">Pickup</option>
+      <option value="Quad">Quad</option>
+      <option value="Cabrio">Cabrio</option>
+      <option value="SUV">SUV</option>
+      <option value="Bus">Bus</option>
+    </select>
+    <label for="bauart">bauart</label> 
   </div>
 </div>
 
 <div class="row">
-  <div class="input-field col s6">
-    <input mdInput type="number" placeholder="Tank" value="Sushi" min="0" max="100">
+  <div class="input-field col 16 s12 m6">
+    <input type="number" id="tank" value=0 min="0" max="100" class="validate">
+    <label for="tank">tank</label>
   </div>
 </div>
 

@@ -25,7 +25,6 @@
         // existiert die Datenbank?
         $this->chkDB();
 
-        // echo 'action=' . $this->action . " / id= " . $this->id;
         switch($this->action){
             case "getData":
                 $this->getData();
@@ -51,10 +50,8 @@
      */
     function getData(){
         if(0==$this->id){
-            // echo "alle Daten anzeigen";
             $sql = "SELECT * FROM autos";
         }else{
-            // echo "nur Datensatz mit id = " . $this->id . " anzeigen.";
             $sql = "SELECT * FROM autos WHERE id=" .$this->id;
         }
         $con = new SQLite3($this->DBName);
@@ -74,9 +71,6 @@
         $auto['error']= array();
 
         echo json_encode($auto);
-        // echo '<pre>';
-        // print_r($arr);
-        // echo '<pre>';
     }
 
     /**

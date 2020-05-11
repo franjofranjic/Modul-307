@@ -14,7 +14,7 @@
 </head>
 <body>
   <nav>
-    <div class="nav-wrapper deep-purple lighten-2">
+    <div class="nav-wrapper orange lighten-2">
       <a href="#" class="brand-logo">Logo</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li ><a class="black-text" href="https://materializecss.com/">MATERIALIZE CSS</a></li>
@@ -24,30 +24,22 @@
     </div>
   </nav>
   <a class="btn-floating btn-large waves-effect waves-light teal plusbtn" id="addBtn"><i class="material-icons">add</i></a>
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-        <h4 id="modaltitle">Modal Header</h4>
-        <div id="modalinhalt"></div>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
-  </div>
-  <table class="striped responsive-table">
+  
+  <table class="striped responsive-table lighten-4 orange">
     <thead>
-      <tr>
+      <tr class="orange lighten-1 black-text">
           <th>id</th>
           <th>name</th>
           <th>kraftstoff</th>
           <th>farbe</th>
           <th>bauart</th>
-          <th>tank</th>
+          <th class="center">tank</th>
           <th>action</th>
       </tr>
     </thead>
-    <tbody>
-    </tbody>
+    <tbody></tbody>
   </table>
+
   <template>
     <tr>
         <td>{{id}}</td>
@@ -58,7 +50,7 @@
           {{farbe}}
         </td>
         <td>{{bauart}}</td>
-        <td>{{tank}}</td>
+        <td class="center">{{tank}}</td>
         <td data-id="{{id}}">
           <i class="material-icons blue-text tankenBtn">directions_car</i>
           <i class="material-icons green-text editBtn">create</i>
@@ -66,5 +58,17 @@
         </td>
       </tr>
   </template>
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4 id="modaltitle">Modal Header</h4>
+        <div id="modalinhalt"></div>
+    </div>
+    <div class="modal-footer">
+        <a id="abbrechen" href="#!" class="red modal-close waves-effect waves-green z-depth-5 btn-flat left">abbrechen</a>
+        <a id="speichern" href="#!" class="green waves-effect waves-green z-depth-5 btn-flat right">speichern</a>
+    </div>
+  </div>
+
   </body>
 </html>
