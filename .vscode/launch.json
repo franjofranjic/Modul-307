@@ -15,7 +15,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://192.168.65.2/Modul-307/${relativeFile}",
+            "url": "http://localhost:8080/Modul-307/${relativeFile}",
             "webRoot": "${workspaceFolder}"
         }
     ]

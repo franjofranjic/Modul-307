@@ -1,0 +1,10 @@
+{
+    "data": [
+        {"id": 1, "name": "Passat", "kraftstoff": "Diesel", "farbe": "#000000", "bauart": "Limousine", "tank": 0},
+        {"id": 2, "name": "Opel", "kraftstoff": "Benzin", "farbe": "#008888", "bauart": "SUV", "tank": 0},
+        {"id": 3, "name": "VW", "kraftstoff": "Elektro", "farbe": "#006666", "bauart": "Pickup", "tank": 0}
+    ],
+    "error": [
+        {"meldung": "Name falsch eingegeben"}
+    ]
+}
