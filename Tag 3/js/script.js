@@ -50,7 +50,7 @@ $(function() {
 
         $.ajax({
             method: "GET",
-            url: "data/autos.json",
+            url: "data/auto.php",
             dataType: "json",
             success: function (response) {
                 // bestehende Anzeige leeren
