@@ -34,6 +34,9 @@
             case "insertData":
                 $this->insertData();
                 break;
+            case "checkID":
+                $this->checkID();
+                break;
             default:
                 $this->getData();
                 break;     
@@ -47,14 +50,14 @@
 
         $artikel = $_POST['bestellung_artikel'];
             //Nachname nicht länger als 255 Zeichen und nicht kürzer als 3 Zeichen
-            if(strlen($nachname) > 255 || strlen($nachname) < 3)
+            if(strlen($artikel) > 255 || strlen($artikel) < 3)
             {
                 //Nachname ist zulange/zukurz
                 $bestellung['error'][0] = 'Der Artikel muss zwischen 3 und 255 Zeichen haben';
                 return false;
             } else {
                 //Nachname darf folgende Zeichen nicht enthalten
-                if(preg_match('/[<>\'%&1234567890]/', $bestellung)){
+                if(preg_match('/[<>\'%&1234567890]/', $artikel)){
                     //Nachname enthält ein verbotenes Zeichen
                     $this->myArr['error'][] = 'Der Artikel darf die Zeichen [, <, >, \', %, &, ] und Zahlen nicht enthalten';
                     return false;
@@ -103,7 +106,7 @@
             return false;
         } else {
             //Nummer darf folgende Zeichen nicht enthalten
-            if(preg_match('/[<>\'%&]/', $menge)){
+            if(preg_match('/[<>\'%&]/', $preis)){
   
                 $bestellung['error'][0] = 'Der Preis darf die Zeichen [, <, >, \', %, &, ] nicht enthalten';
                 return false;
@@ -111,6 +114,19 @@
         }
 
         return true;
+    }
+
+    function checkID() {
+        $sql = "UPDATE franjo_bestellung SET bestellung_status= NOT bestellung_status WHERE bestellung_id=" .$this->id;
+        $con = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PW, MYSQL_DB);
+        
+        $bestellung = array();
+        $bestellung['data']=array();
+        $bestellung['error']= array();
+        if($con->query($sql)){
+            $bestellung['error'][0]['meldung'] = "Update erfolgreich, Bestellungsstatus wurde geupdated";
+        }
+        echo json_encode($bestellung);
     }
     
     /**
@@ -120,17 +136,15 @@
      * @return json
      */
     function insertData(){
-        $new_status = 0;
-
         $res = explode("-", $_POST["bestellung_kaufdatum"]);
         $new_date = $res[2]."-".$res[0]."-".$res[1];
 
         if($this->isValidArtikel() && $this->isValidMenge() && $this->isValidPreis()) {
             if($this->id == 0) {
                 $sql = "INSERT INTO franjo_bestellung (bestellung_artikel, bestellung_menge, bestellung_preis, bestellung_kaufdatum, bestellung_bemerkung, bestellung_status)
-                VALUES('" .$_POST["bestellung_artikel"] ."','" .$_POST["bestellung_menge"] ."','" .$_POST["bestellung_preis"] ."','" .$new_date ."','" .$_POST["bestellung_bemerkung"]."'," .$new_status .")";
+                VALUES('" .$_POST["bestellung_artikel"] ."','" .$_POST["bestellung_menge"] ."','" .$_POST["bestellung_preis"] ."','" .$new_date ."','" .$_POST["bestellung_bemerkung"]."'," .$_POST["bestellung_status"] .")";
             } else {
-                $sql = "UPDATE franjo_bestellung SET bestellung_artikel='" .$_POST["bestellung_artikel"] ."', bestellung_menge='" .$_POST["bestellung_menge"] ."', bestellung_preis='" .$_POST["bestellung_preis"] ."', bestellung_kaufdatum= '".$new_date ."', bestellung_bemerkung='" .$_POST["bestellung_bemerkung"]."', bestellung_status=" .$new_status ." WHERE bestellung_id=" .$this->id;
+                $sql = "UPDATE franjo_bestellung SET bestellung_artikel='" .$_POST["bestellung_artikel"] ."', bestellung_menge='" .$_POST["bestellung_menge"] ."', bestellung_preis='" .$_POST["bestellung_preis"] ."', bestellung_kaufdatum= '".$new_date ."', bestellung_bemerkung='" .$_POST["bestellung_bemerkung"]."', bestellung_status=" .$_POST["bestellung_status"] ." WHERE bestellung_id=" .$this->id;
             }
             $con = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PW, MYSQL_DB); 
 

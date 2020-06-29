@@ -1,12 +1,15 @@
 $(function() {
+    getData();
 
-    // preis validieren
-    function isPreisValid() {
-        $('#bestellung_preis').val();
-        return true;
+    function checked(index,data) {
+        var status = data.data[index].bestellung_status;
+        console.log(status);
+        if (status == 1)
+            return true;
+        else
+            return false;
     }
 
-    getData();
     $('.modal').modal();
 
     $("#addBtn").click(function() {
@@ -28,13 +31,16 @@ $(function() {
         data.bestellung_preis = $('#bestellung_preis').val();
         data.bestellung_kaufdatum = $('#bestellung_kaufdatum').val();
         data.bestellung_bemerkung = $('#bestellung_bemerkung').val();
-        data.bestellung_status = $('#bestellung_status').val();
+        if($('#bestellung_status').prop("checked")) {
+            data.bestellung_status = 1;
+        }else {
+            data.bestellung_status = 0;
+        }
         id = $('#FieldID').val();
 
         console.log(data);
         console.log(id);
 
-        //Todo validierung
         if (data.bestellung_artikel.length < 3) {
             console.log('zu klein, mindestens 3 Zeichen');
             $('#bestellung_artikel').addClass('orange lighten-4');
@@ -94,7 +100,10 @@ $(function() {
                 if (response['data'].length > 0) {
                     for (var i = 0; i < response.data.length; i++) {
                         var htmlanzeige = Mustache.to_html(template, response['data'][i]);
-                        $('tbody').append(htmlanzeige)
+                        $('tbody').append(htmlanzeige);
+                        $('.onChecked').each(function(index){ //Checkboxen entsprechend setzen
+                            $(this).prop('checked',checked(index,response));
+                        });
                     }
                 }
                 if(response['meldung']) {
@@ -143,6 +152,27 @@ $(function() {
                                 console.info('Daten erhalten');
                                 for (var i = 0; i < response['error'].length; i++) {
                                     M.toast({ html: response['error'][i].meldung, classes: 'rounded red' });
+                                }
+                            }
+                            getData();
+                        }
+                    });
+                });
+
+                //erledigt
+                $('.onChecked').click(function() {
+                    var id = $(this).parent().attr('data-id');
+                    console.log('set checked/unchecked von : ' + id);
+                    $.ajax({
+                        url: 'data/data.php?action=checkID&id=' + id,
+                        dataType: 'json',
+                        success: function(response) {
+                            // Wenn error - Meldungen existieren, anzeigen
+                            console.log('hei');
+                            if (response['error'].length > 0) {
+                                console.info('Daten erhalten');
+                                for (var i = 0; i < response['error'].length; i++) {
+                                    M.toast({ html: response['error'][i].meldung, classes: 'rounded blue' });
                                 }
                             }
                             getData();

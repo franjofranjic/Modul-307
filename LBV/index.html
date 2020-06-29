@@ -47,9 +47,9 @@
         <tr>
             <td>
                 <!-- Wert für Checkbox einfügen  -->
-                <label>
-                    <input type="checkbox" checked="" />
-                    <span></span>
+                <label data-id="{{bestellung_id}}">
+                    <input class="onChecked" type="checkbox"/>
+                    <span>{{bestellung_status}}</span>
                </label>
             </td>
             <td>{{bestellung_artikel}}</td>
