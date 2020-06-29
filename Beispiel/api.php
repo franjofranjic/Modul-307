@@ -1,16 +1,7 @@
 <?php
-// Instanz erstellen und Konstruktor aufrufen
 $var = new daten();
-// Instanz löschen und Destriktor aufrufen
 $var = NULL;
-/**
-* Meine Klasse
-* @author   	Josip Skara
-* @copyright	Josip Skara
-* @license		OpenSource
-* @version  	1.0
-* @category 	Controller 
-*/ 
+
 class daten{
     private $database = 'data/meinedatei.sqlite3';
     private $id;
@@ -24,7 +15,7 @@ class daten{
     function __construct(){
         //Method chkDatabase aufrufen
         $this->chkDatabase();
-        $this->con = new SQLite3($this->database);
+        $this->con = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PW); 
         //Action/id auslesen (@ unterdrücken der Fehlermeldung)
         $action = @$_GET['action'];
         $this->id = @$_GET['id'];
@@ -37,20 +28,15 @@ class daten{
 
         switch($action){
             case "getData":
-                //api.php?action=getData
-                //api.php?action=getData&id=2
                 $this->getData();
             break;
 
             case "delete":
-                //api.php?action=delete&id=2
                 $this->delete();
             break;
 
             case "updateInsert":
-                //auto.php?action=update_insert          //insert
-                //auto.php?action=update_insert&id=3     //update
-                $this->updateInsert();
+                $this->insertData();
             break;
 
             default:
@@ -63,8 +49,8 @@ class daten{
       * Daten als JSON ausgaben
       * @param id Falls nur ein Datensatz ausgegeben werden soll
       * @return JSON echo vom JSON
-      */
-      private function getData(){
+    */
+    private function getData(){
         //Wenn id nicht gesetzt alle Datensätze auslesen
         if(0 == $this->id){ 
             $sql ="SELECT * FROM kunden";
@@ -72,23 +58,27 @@ class daten{
             //Wenn id gesetzt nur einen Datensatz auslesen
             $sql ="SELECT * FROM kunden WHERE id =" .$this->id;
         }
-        //Die Resultate werden abgespeichert
-        $results = $this->con->query($sql);
-
-        //Variable i wird auf 0 gesetzt
-        $i = 0;
-        //Für alle Datensätze wiederholen
-        while($res = $results->fetchArray(SQLITE3_ASSOC)){
-            $this->myArr['data'][$i] = $res;
+        $con = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PW, MYSQL_DB); 
+        $results = $con->query($sql);
+        $arr = array();
+        $i=0;
+        while($res = mysqli_fetch_array($results)){
+            foreach($res as $key => $value){
+                // $key = name der Spalte
+                // $value = wert
+                if(!is_int($key)){
+                    $arr[$i][$key] = $value;
+                }
+            }
             $i++;
         }
-        //Überprüfen ob i noch null ist
-        if($i==0){
-            //wenn i noch null ist kommt ein Fehler, denn keine Daten sind vorhanden
-            $this->myArr['error'][] = 'fehlerhaft -> keine Daten vorhanden';
-        }
-        echo json_encode($this->myArr);
-     }
+        $auto = array();
+        $auto['data']=$arr;
+        $auto['error']= array();
+
+        echo json_encode($auto);
+        $con->close();
+    }
 
      /**
       * Daten löschen
@@ -119,7 +109,7 @@ class daten{
       * @param id vom Kunden
       * @return JSON echo vom JSON
       */
-        private function updateInsert(){
+        private function insertData(){
             //Aus dem POST werden die Werte name, kraftstoff, ... genommen
             $vorname = $_POST['vorname'];
             $nachname = $_POST['nachname'];
@@ -165,7 +155,72 @@ class daten{
       * @todo
       * @return bool 0 oder 1 (1 wurde erstellt)
       */
-      private function chkDatabase(){
+    private function chkDatabase(){
+
+        define('MYSQL_HOST',"localhost");  
+        define('MYSQL_USER',"root");  
+        define('MYSQL_PW',"");  
+        define('MYSQL_DB',"meineDatenbank"); 
+        define('MYSQL_INFO_DB',"information_schema"); 
+
+        $con = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PW, MYSQL_DB); 
+        if(mysqli_connect_errno()){ 
+            // DB existiert nicht, also neu erstellen 
+            $con = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PW); 
+            $createdb = "CREATE DATABASE IF NOT EXISTS " . MYSQL_DB . " DEFAULT CHARACTER SET utf8"; 
+            $con->query($createdb);     
+        } 
+        $con->select_db(MYSQL_INFO_DB) or die('Datenbankverbindung nicht möglich'); 
+
+        $result = $con->query("SELECT count(table_name) as tables FROM TABLES 
+        WHERE table_schema = '".MYSQL_DB."'"); 
+        if($result){ 
+            while($res = mysqli_fetch_array($result)){ 
+                foreach($res as $key => $value){ 
+                    $arr[$key] = $value; 
+                } 
+            } 
+         
+            // Abändern nach Aufgabenstellung
+            echo $arr;
+
+            if($arr['tables'] == '1'){ 
+                $con->select_db(MYSQL_DB) or die('Datenbankverbindung nicht möglich'); 
+                $sql = "CREATE TABLE IF NOT EXISTS kunden(
+                    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                    vorname TEXT NOT NULL,
+                    nachname TEXT NOT NULL,
+                    email TEXT,
+                    themen TEXT DEFAULT News,
+                    firma INTEGER DEFAULT 0,
+                    werbung TEXT DEFAULT Nein
+                )";
+                //Kommando Absetzen
+                $con->query($sql);
+
+                //----------------------------------------------------------DATENSATZ 1 - 3
+                //Insert eines Datensatzes
+                $sql ="INSERT INTO kunden(vorname, nachname, email, themen, firma, werbung) VALUES ('Max', 'Hauser', 'email@adresse.com', 'News', 0, 'Ja')";
+                //Kommando Absetzen
+                $con->query($sql);
+
+                //Insert eines Datensatzes
+                $sql ="INSERT INTO kunden(vorname, nachname, email, themen, firma, werbung) VALUES ('Linda', 'Daxer', 'info@daxer.com', 'Bücher', 1, 'Nein')";
+                //Kommando Absetzen
+                $con->query($sql);
+
+                //Insert eines Datensatzes
+                $sql ="INSERT INTO kunden(vorname, nachname, email, themen, firma, werbung) VALUES ('Max', 'Hauser', 'email@adresse.com', 'News', 1, 'Ja')";
+                //Kommando Absetzen
+                $con->query($sql);
+                //Default
+                $sql ="INSERT INTO kunden(vorname, nachname, email) VALUES ('Max', 'Hauser', 'email@adresse.com')";
+                //Kommando Absetzen
+                $con->query($sql);
+    
+
+        //----------------------------------------------------------TABLE
+
             //Wenn File nicht existiert
             if(!file_exists($this->database)){
                 //Datenbank wird erstellt
@@ -205,7 +260,7 @@ class daten{
                 //Kommando Absetzen
                 $con->query($sql);
             }
-        }
+    }
 
 
         ///Validierung///
@@ -324,10 +379,4 @@ class daten{
                 return true;
             } 
         }    
-
-
-
-
-    function __destruct(){
-    }
 }

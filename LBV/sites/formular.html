@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="input-field col 16 s12 m6">
+      <input id="bestellung_artikel" type="text" class="colorartikel">
+      <label for="bestellung_artikel">Artikel*</label>
+    </div>
+  
+    <div class="input-field col 16 s12 m6">
+      <input type="number" id="bestellung_menge" value=1 min="1" max="100" class="validate" required>
+      <label for="bestellung_menge">Menge *</label>
+    </div>
+</div>
+
+  
+<div class="row">
+    <div class="input-field col 16 s12 m6">
+      <input type="number" step="0.01" id="bestellung_preis" min="0" class="validate" required>
+      <label for="bestellung_preis">Preis pro Stück *</label>
+    </div>
+  
+    <div class="input-field col 16 s12 m6">
+      <input type="text" class="datepicker" id="bestellung_kaufdatum">
+      <label for="bestellung_kaufdatum">Kaufdatum</label>
+    </div>
+</div>
+
+<div class="row">
+  <div class="input-field col 16 s12 m6">
+    <input id="bestellung_bemerkung" type="text" class="validate">
+    <label for="bestellung_bemerkung">Bemerkung</label>
+  </div>
+
+  <div class="input-field col 16 s12 m6">
+    <label>
+      <input type="checkbox" id="bestellung_status"/>
+      <span>Status</span>
+ </label>
+  </div>
+</div>
+  
+<div class="row" style="display: none;">
+  
+  <div class="input-field col 16 s12 m6">
+    <input type="number" id="FieldID" class="validate">
+  </div>
+</div>
+  
+  
+  

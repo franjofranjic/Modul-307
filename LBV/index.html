@@ -1,44 +1,78 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="de">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta http-equiv="cache-control" content="no-cache">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="img/favicon.jpg">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js"></script>
-    <script src="js/index.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="css/index.css">
+    <title>LBV</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
 </head>
-
 <body>
     <header>
         <nav>
-            <div class="nav-wrapper black">
-                <a href="#" class="brand-logo">
-                    <img src="./img/favicon.jpg" height="22"> Home
-                </a>
+            <div class="nav-wrapper orange lighten-2">
+              <a href="#" class="brand-logo">Logo</a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li ><a class="black-text" href="https://materializecss.com/">MATERIALIZE CSS</a></li>
+                <li ><a class="blue-text" href="badges.html">GEEKLAPS</a></li>
+                <li ><a class="red-text" href="https://ict-berufsbildung.info">MOODLE</a></li>
+              </ul>
             </div>
         </nav>
     </header>
-    <main class="row">
-        <div id="liste" class="col s12 m7 l8 blue lighten-5">liste</div>
-        <div id="form" class="col s12 m5 l4 lime lighten-5 ">form</div>
-    </main>
-    <footer class="page-footer grey darken-4">
-        <div class="footer-copyright black">
-            <div class="container ">
-                © 2020 Copyright Josip Skara
-            </div>
-        </div>
-    </footer>
-</body>
 
+    <a class="btn-floating btn-large waves-effect waves-light teal plusbtn" id="addBtn"><i class="material-icons">add</i></a>
+    
+    <table class="striped responsive-table lighten-4 orange">
+        <thead>
+          <tr class="orange lighten-1 black-text">
+            <th>Status</th>
+            <th>Artikel*</th>
+            <th>Menge*</th>
+            <th>Preis pro Stück*</th>
+            <th>Kaufdatum</th>
+            <th>Bemerkung</th>
+            <th>Bearbeitung</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <template>
+        <tr>
+            <td>
+                <!-- Wert für Checkbox einfügen  -->
+                <label>
+                    <input type="checkbox" checked="" />
+                    <span></span>
+               </label>
+            </td>
+            <td>{{bestellung_artikel}}</td>
+            <td>{{bestellung_menge}}</td>
+            <td>{{bestellung_preis}}</td>
+            <td>{{bestellung_kaufdatum}}</td>
+            <td>{{bestellung_bemerkung}}</td>
+            <td data-id="{{bestellung_id}}">
+              <i class="material-icons green-text editBtn">create</i>
+              <i class="material-icons red-text removeBtn">delete_forever</i>
+            </td>
+        </tr>
+    </template>
+
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+            <h4 id="modaltitle">Modal Header</h4>
+            <div id="modalinhalt"></div>
+        </div>
+        <div class="modal-footer">
+            <a id="abbrechen" href="#!" class="red modal-close waves-effect waves-green z-depth-5 btn-flat left">abbrechen</a>
+            <a id="speichern" href="#!" class="green waves-effect waves-green z-depth-5 btn-flat right">speichern</a>
+        </div>
+      </div>
+</body>
 </html>

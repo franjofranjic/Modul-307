@@ -2,7 +2,6 @@
 $('select').formSelect();
 
 
-
 //Überprüfen wie lange der eingegebene Vorname ist.
 $('#vorname').keyup(function () { 
     if($('#vorname').val().length < 3){
