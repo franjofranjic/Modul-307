@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.min.js"></script>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <title>Auto Beispiel</title>
+     <link rel="stylesheet" href="css/style.css">
+     <script src="js/script.js"></script>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper orange lighten-2">
+      <a href="#" class="brand-logo">Logo</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li ><a class="black-text" href="https://materializecss.com/">MATERIALIZE CSS</a></li>
+        <li ><a class="blue-text" href="badges.html">GEEKLAPS</a></li>
+        <li ><a class="red-text" href="https://ict-berufsbildung.info">MOODLE</a></li>
+      </ul>
+    </div>
+  </nav>
+  <a class="btn-floating btn-large waves-effect waves-light teal plusbtn" id="addBtn"><i class="material-icons">add</i></a>
+  
+  <table class="striped responsive-table lighten-4 orange">
+    <thead>
+      <tr class="orange lighten-1 black-text">
+          <th>id</th>
+          <th>name</th>
+          <th>kraftstoff</th>
+          <th>farbe</th>
+          <th>bauart</th>
+          <th class="center">tank</th>
+          <th>action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <template>
+    <tr>
+        <td>{{id}}</td>
+        <td>{{name}}</td>
+        <td>{{kraftstoff}}</td>
+        <td>
+          <div class="coloranzeige" style="background-color: {{farbe}}"></div>
+          {{farbe}}
+        </td>
+        <td>{{bauart}}</td>
+        <td class="center">{{betankungen}}</td>
+        <td data-id="{{id}}">
+          <i class="material-icons blue-text tankenBtn">directions_car</i>
+          <i class="material-icons green-text editBtn">create</i>
+          <i class="material-icons red-text removeBtn">delete_forever</i>
+        </td>
+      </tr>
+  </template>
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4 id="modaltitle">Modal Header</h4>
+        <div id="modalinhalt"></div>
+    </div>
+    <div class="modal-footer">
+        <a id="abbrechen" href="#!" class="red modal-close waves-effect waves-green z-depth-5 btn-flat left">abbrechen</a>
+        <a id="speichern" href="#!" class="green waves-effect waves-green z-depth-5 btn-flat right">speichern</a>
+    </div>
+  </div>
+
+  </body>
+</html>

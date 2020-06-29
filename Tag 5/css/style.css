@@ -1,0 +1,17 @@
+.coloranzeige {
+    width: 80px;
+    height: 20px;
+    display: inline-flex;
+}
+.plusbtn {
+    float:right;
+    margin:15px;
+}
+
+select {
+    display: block;
+}
+
+nav {
+    margin-bottom: 10px;
+}

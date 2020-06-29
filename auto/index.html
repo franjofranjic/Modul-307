@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="de">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Titel der Seite</title>
+        <!-- Ein Service vom Meta-Tag-Generator auf http://www.metaner.de/ -->
+        <meta name="author" content="Name">
+        <meta http-equiv="content-language" content="de">
+        <meta name="robots" content="index, follow">
+        <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon">
+        <!--JQuery kommt unbedingt vor Materialize.js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!--Materialize CSS -->
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!--Mustache für die Anzeige-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+        <!-- IHR JS - File, bitte nach Materialize einfügen!-->
+        <script src="js/index.js"></script>
+        <link rel="stylesheet" href="css/index.css">
+    </head>
+
+    <body>
+        <nav>
+            <div class="nav-wrapper orange lighten-3">
+                <a href="#" class="brand-logo">Logo</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li>
+                        <a class="black-text" target="_blank" href="https://materializecss.com/">
+                            <i class="material-icons">brightness_1</i> Materialize css
+                        </a>
+                    </li>
+                    <li>
+                        <a class="blue-text" target="_blank" href="http://demo.geekslabs.com/materialize/v2.1/layout03/index.html">
+                            <i class="material-icons">brightness_1</i> Geeklaps
+                        </a>
+                    </li>
+                    <li>
+                        <a class="red-text" target="_blank" href="https://ict-berufsbildung.info">
+                            <i class="material-icons">brightness_1</i> Moodle
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <table class="orange lighten-4 striped">
+            <thead>
+                <tr class="orange lighten-1 black-text">
+                    <th>id</th>
+                    <th>name</th>
+                    <th>kraftstoff</th>
+                    <th>farbe</th>
+                    <th>bauart</th>
+                    <th class="center">betankungen</th>
+                    <th class="center">mydate</th>
+                    <th>action</th>
+                </tr>
+            </thead>
+            <!-- Platzhalter für anzeige der Daten  -->
+            <tbody></tbody>
+        </table>
+
+        <!-- TEMPLATE für einen Datensatz, wird mit JSON und Mustache angezeigt in tbody -->
+        <template>
+        <tr>
+            <tr>
+                <td>{{id}}</td>
+                <td>{{name}}</td>
+                <td>{{kraftstoff}}</td>
+                <td>{{farbe}}
+                    <div class="coloranzeige" style="background-color: {{farbe}}"></div>
+                </td>
+                <td>{{bauart}}</td>
+                <td class="center">{{betankungen}}</td>
+                <td class="center">{{mydate}}</td>
+                <td data-id="{{id}}">
+                    <i class="tanken material-icons blue-text">drive_eta</i>
+                    <i class="edit material-icons green-text">create</i>
+                    <i class="delete material-icons red-text">delete_forever</i>
+                </td>
+            </tr>
+        </tr>
+        </template>
+
+        <!--Material - ICON um das Modal zu öffnen-->
+        <a id="addauto" class="waves-effect waves-light modal-trigger" href="#modal1"><i class="large material-icons red-text">add_circle</i></a>
+
+        <!-- Modal Structure -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <!-- MODAL - TITEL wird über JS geändert bei edit oder neuem Datensatz -->
+                <h4 id="modat_titel">Modal Header</h4>
+                <!-- MODAL - Formular, wird bei edit oder neu per load geladen -->
+                <p id="modat_inhalt">A bunch of text</p>
+            </div>
+            <div class="modal-footer">
+                <!--<a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>-->
+                <a id="abbrechen" href="#!" class="red modal-close waves-effect waves-green z-depth-5 btn-flat left">abbrechen</a>
+                <a id="speichern" href="#!" class="green waves-effect waves-green z-depth-5 btn-flat right">Speichern</a>
+            </div>
+        </div>
+
+    </body>
+
+</html>

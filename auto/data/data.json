@@ -1,0 +1,50 @@
+{
+    "data": [{
+            "id": 1,
+            "name": "VW",
+            "kraftstoff": "Diesel",
+            "farbe": "#47b89e",
+            "bauart": "Neuwagen",
+            "tank": 0
+        },
+        {
+            "id": 2,
+            "name": "Opel",
+            "kraftstoff": "Benzin",
+            "farbe": "#f70046",
+            "bauart": "Oldtimer",
+            "tank": 6
+        },
+        {
+            "id": 3,
+            "name": "Honda",
+            "kraftstoff": "Benzin",
+            "farbe": "#f700f3",
+            "bauart": "SUV",
+            "tank": 8
+        },
+        {
+            "id": 4,
+            "name": "Mercedes",
+            "kraftstoff": "Benzin",
+            "farbe": "#666666",
+            "bauart": "PW",
+            "tank": 4
+        },
+        {
+            "id": 5,
+            "name": "DKW",
+            "kraftstoff": "Benzin",
+            "farbe": "#333333",
+            "bauart": "Bulli",
+            "tank": 9
+        }
+    ],
+    "error": [{
+            "meldung": "Name falsch eingegeben"
+        },
+        {
+            "meldung": "Name kleiner als 3 Zeichen"
+        }
+    ]
+}

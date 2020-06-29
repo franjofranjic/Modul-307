@@ -1,0 +1,52 @@
+<!-- FORMULAR  - START -------------------------------- -->
+<form>
+    <!-- ZEILE ----------- -->
+    <div class="row">
+        <!-- SPALTE ----------- -->
+        <div class="input-field col l6 m6 s12 labelset">
+            <input required id="name" name="name" value="" type="text" class="validate" minlength="2" maxlength="255">
+            <label for="name">name *</label>
+        </div>
+        <!-- SPALTE ----------- -->
+        <div class="input-field col l6 m6 s12 labelset">
+            <input id="kraftstoff" name="kraftstoff" type="text" class="validate" minlength="2" maxlength="255">
+            <label for="kraftstoff">kraftstoff</label>
+        </div>
+    </div>
+    <!-- ZEILE ----------- -->
+    <div class="row">
+        <!-- SPALTE ----------- -->
+        <div class="input-field col l6 m6 s12">
+            farbe :
+            <input required id="farbe" name="farbe" value="#000000" type="color" class="validate" minlength="2" maxlength="255">
+
+        </div>
+        <!-- SPALTE ----------- -->
+        <div class="input-field col l6 m6 s12">
+            <select id="bauart" name="bauart">
+                    <option value="Limousine">Limousine</option>
+                    <option value="Kombi">Kombi</option>
+                    <option value="Pickup">Pickup</option>
+                    <option value="Quad">Quad</option>
+                    <option value="Cabrio">Cabrio</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Bus" selected>Bus</option>
+                </select>
+            <label for="bauart">Materialize Select</label>
+        </div>
+    </div>
+    <!-- ZEILE ----------- -->
+    <div class="row">
+        <!-- SPALTE ----------- -->
+        <div class="input-field col l6 m6 s12">
+            <input required id="betankungen" name="betankungen" value="0" type="number" class="validate" minlength="2" maxlength="255" min="0" max="1000">
+            <label for="betankungen">betankungen</label>
+        </div>
+        <!-- SPALTE ----------- -->
+        <div class="input-field col l6 m6 s12">
+            DATUM: <input type="text" class="datepicker" name="mydate" id="mydate">
+        </div>
+    </div>
+    <input id="id" name="id" value="0" type="hidden">
+    <p>* = zwingend</p>
+</form>
