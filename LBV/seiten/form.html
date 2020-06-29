@@ -1,0 +1,70 @@
+<h5>Formular</h5>
+<input type="hidden" id="id">
+<hr>
+<div class="row">
+    <div class="input-field col s6">
+        <i id="vorname_icon" class="colorvorname material-icons prefix validate">assignment_ind</i>
+        <input id="vorname" type="text" class="colorvorname">
+        <label class="colorvorname" for="vorname">Vorname*</label>
+        <span class=" colorvorname helper-text">Pflichtfeld</span>
+    </div>
+    
+    <div class="input-field col s6">
+        <i id="nachname_icon" class="colornachname material-icons prefix validate">assignment_ind</i>
+        <input id="nachname" type="text" class ="colornachname">
+        <label class="colornachname" for="nachname">Nachname*</label>
+        <span class="colornachname helper-text">Pflichtfeld</span>
+    </div>
+</div>
+<hr>
+
+<div class="row">
+    <div class="input-field col s12">
+        <i id="email_icon" class="material-icons prefix validate">email</i>
+        <input id="email" type="text" >
+        <label for="email">E-Mail*</label>
+        <span class=" helper-text">Pflichtfeld</span>
+    </div>
+    <div class="input-field col s12">
+        <i id="anrede_icon" class="material-icons prefix">forum</i>
+        <select id="themen" class="validate">
+            <option value="" disabled selected>Thema wählen</option>
+            <option value="News" >News</option>
+            <option value="Bücher">Bücher</option>
+            <option value="Games">Games</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="input-field col s12">
+        <i class="material-icons prefix">domain</i>
+        <input id="firma" type="number" class="validate" step="1"> <!-- max="10" -->
+        <label for="firma">Firma</label>
+    </div>
+</div>
+<div class="row">
+    <p class="center">Nur Specials Newsletter</p>
+    <div class="input-field col s6">
+      <label>
+        <input name="group1" type="radio" id="werbung" value="Ja" checked />
+        <span>Ja</span>
+      </label>
+    </div>
+    <div class="input-field col s6">
+        <label>
+            <input name="group1" type="radio" id="werbung" value="Nein"/>
+            <span>Nein</span>
+          </label>
+      </div>
+    
+</div>
+
+<div class="row center">
+    <a href="#!" class="waves-effect waves-light btn-flat red" id ="cancel"><i class="material-icons left" >cancel</i>Cancel</a></a>
+    <a href="#!" class="waves-effect waves-light btn-flat green" id ="save"><i class="material-icons left" >save</i>Save</a></a>
+</div>
+
+
+<script>
+    $.getScript("js/form.js");
+</script>

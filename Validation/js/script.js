@@ -11,6 +11,4 @@ $(function() {
           $('.colorName').addClass('green-text');
         }
     });
-    
-
 });

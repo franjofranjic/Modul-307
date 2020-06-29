@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+@import url('https://fonts.googleapis.com/css?family=Margarine');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+html {
+    height: 100%;
+}
+
+body {
+    /*font-family: 'Margarine', cursive;*/
+    font-family: 'Ubuntu', sans-serif;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+}

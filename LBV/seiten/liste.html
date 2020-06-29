@@ -1,0 +1,48 @@
+<h5>Liste</h5>
+<hr>
+
+<main>
+    <!-- Tabellenkopf -->
+    <table class="striped">
+        <thead class="orange darken-3 black-text">
+          <tr>
+              <th>vorname</th>
+              <th>nachname</th>
+              <th>email</th>
+              <th>Themen</th>
+              <th>Firma</th>
+              <th>Nur Specials</th> 
+              <th class="Nur Specials">action</th> 
+          </tr>
+        </thead>
+  
+        <!-- Tabellenbody -->
+        <tbody class="amber accent-4 black-text">
+  
+        </tbody>
+      </table>
+  
+      <!-- Definieren der Struktur eines Datensatzes -->
+      <template>
+        <tr>
+            <!-- Platzhalter wichtig gleich wie Array in json für Mustache -->
+            
+            <td>{{vorname}}</td>
+            <td>{{nachname}}</td>
+            
+            <td>{{email}}</td>
+            <td>{{themen}}</td>
+            <td>{{firma}}</td>
+            <td>{{werbung}}</td>
+            
+            <td class="center" width = 500px data-id = "{{id}}">
+              <a class="delete waves-effect waves-light btn-large red"><i class="material-icons left">delete</i>delete</a>
+              <a class="edit waves-effect waves-light btn-large green "><i class="material-icons left">edit</i>edit</a>
+          </td>
+        </tr>
+      </template>
+</main>
+
+<script>
+    $.getScript("js/liste.js");
+</script>
